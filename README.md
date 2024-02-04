@@ -1,3 +1,78 @@
+# Shanghai Jiao Tong University Open Source Balancing System Documentation
+
+## General
+
+This is an open-source document for the balancing control system of Shanghai Jiao Tong University’s Jiao Long team, providing an index of open-source content and research development approach. The contents of this open-source project primarily focus on the design documentation of the control system as well as reference test video.
+
+This open-source project is from Shanghai Jiao Tong University’s Jiao Long team for technical use only and cannot be used for any commercial purposes without the creator’s permission.
+
+Reproduction must indicate the source of the work, and the creator reserves the right to pursue illegal reproduction through legal means.
+
+## Index
+
+### Document
+1. Dynamical Model - [WBR_control](WBR_control.html)
+2. Leg Mechanism Analysis - [WBR_leg](WBR_leg.html)
+3. Controller Design - [WBR_control](WBR_control.html)
+
+### Research Development Plan
+1. Research Development Plan Documentation - [plan](plan.md)
+
+### Handwritten Manuscript
+The following content has yet to be organized into an electronic format, thus the open source is in handwritten form. Such content includes power limitation, adaptive adjustment, anti-slip strategy, gyroscope translation, etc. In addition, during the organization process, there may have been some information regarding the modeling analysis and control that was overlooked. These handwriting manuscripts can also be used as a reference.
+1. Modeling Analysis - [modelling](note/modelling/modeling_1.jpg)
+2. Leg Mechanism Analysis - [leg](note/leg/leg_1.jpg)
+3. Power Limitation - [power](note/power/power_1.jpg)
+4. Adaptive Adjustment - [predictor](note/predictor_and_controller.jpg)
+5. Gyroscope Translation & Leg Weight Coefficient - [other](note/other.jpg)
+
+### Control System Flowchart
+Provided flowcharts for core components of the control system (balancing motion control, movement, locomotion control- height, horizontal roll). The system is made up of 4 parts: (1) target state input, (2) controller, (3) robot model, (4) observer.
+1. System Flowchart - [system](assets/control_system/system.jpg)
+2. Controller - [controller](assets/control_system/controller.jpg)
+3. Locomotion Controller - [locomotion_controller](assets/control_system/locomotion_controller.jpg)
+4. Leg Controller - [leg_controller](assets/control_system/leg_controller.jpg)
+5. Observer - [observer](assets/control_system/observer.jpg)
+
+### Simulation
+The assets/sim_WBR_control folder contains simulink simulation video and simulation state curve.
+
+### Test Video
+The assets/test_video folder contains test videos for various functions that can serve as references for movement and robustness performance.
+
+## Hardware Plan
+Drive wheel: 3508 Motor + Self-Controlled Planetary Reducer (14:1 Reduction Ratio)
+Joint Motor: HT04
+Main Controller: STM32F407 (Type-C Development Board)
+IMU: BMI088 (Integrated with C board)
+
+## Research and Development Approach
+Our balanced infantry adopts a wheeled leg design, which has certain advantages in undulating road sections, slopes, and lateral movement, and the corresponding control system is also relatively complex. Considering the complexity of the model and the resource consumption when running on a microcontroller, LQR is adopted to achieve balancing movement control.
+
+In the 2022 season, the balancing robot of the Chuang Meng Zhi Yi team of Harbin Engineering University showed excellent performance in the competition, and after the end of the season, they also published an open-source document for the balancing control system [1]. We referenced such documentation in the process of designing our own control system.
+
+Previously, most models of wheeled-legged robots were simplified as two-stage inverted pendulums [1] [2] [3], and the handling of the two legs was not perfect. At the same time, the control of the wheel motor was divided into two parts: balanced movement and rotation, which were not completely decoupled. Therefore, we believe that the turning performance of the wheeled-legged robot in high-speed movement has not been fully utilized. Thus, after preliminarily verifying the balance control algorithm based on the inverted pendulum model, we have re-established a full-body dynamics model of the robot containing both legs and designed a decoupled control system based on this model.
+
+After completing the core balance, motion control, and leg control, to further improve the performance and robustness of balanced infantry on the field, we conducted a series of optimizations and functional development.
+
+An adaptive regulator was designed for the scene of bullets on the field, and the basic idea for designing this regulator is still to control the output decoupling. Compared to relying on additional sensors to determine whether the projectile or wheel is hovering, this regulator does not disrupt the integrity of the original model and control system. Instead, it intervenes only when the system deviates from the model through a trajectory-tracking approach, ensuring the robustness of the system.
+
+Compared to traditional four-wheeled infantry, the power limitation of balanced vehicles is relatively difficult to achieve, and some methods use supercapacitors and open loops. However, on the one hand, it is easy to exceed the power when the capacitor runs out of power (many teams on the field experience continuous exceeding the power after the balancing is stuck on the wall), and on the other hand, it is also difficult to fully utilize the sporty performance of balanced vehicles. There are currently two ways to limit the power of a balanced vehicle: one is to use NMPC control, which utilizes the constrained optimization characteristics of NMPC to limit the power (refer to the Youth Union defense of Guangdong University of Technology DynamicX team in the 23rd season [4]). This method has a relatively intuitive idea, but requires high computational power for the calculation platform; Another way is to analyze the control law and obtain power-limiting conditions with very low computational consumption, which can run at 1 kHz on a microcontroller.
+
+Due to the inability of balanced infantry to achieve omnidirectional movement, there are many limitations in operation on the field. But in the gyro state, the variable speed balance vehicle can achieve approximate omnidirectional translation, which can effectively improve the maneuverability and survival ability of balance on the track.
+
+Finally, the stability of the car is particularly important in competitions. A balanced car can maintain stability in the event of collisions, stepping down, jumping, and other situations, and restore balance in an extremely short period, to support the operator in completing various operations with confidence.
+
+## Reference Material
+[1] [RoboMaster平衡步兵机器人控制系统设计](https://zhuanlan.zhihu.com/p/563048952)（哈尔滨工程大学创梦之翼战队，2022）  
+[2] S. Wang et al., "Balance Control of a Novel Wheel-legged Robot: Design and Experiments," 2021 IEEE International Conference on Robotics and Automation (ICRA), 2021, pp. 6782-6788, doi: 10.1109/ICRA48506.2021.9561579.  
+[3] V. Klemm et al., "Ascento: A Two-Wheeled Jumping Robot," 2019 International Conference on Robotics and Automation (ICRA), 2019, pp. 7515-7521, doi: 10.1109/ICRA.2019.8793792.  
+[4] [RMUC 2023青工会技术答辩-广东工业大学-无下位机电控、平衡步兵模型预测控制](https://www.bilibili.com/video/BV18F41117QZ)
+
+
+---
+
+
 # 上海交通大学交龙战队平衡步兵控制系统开源说明文档
 
 ## 概述
