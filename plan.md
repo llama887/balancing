@@ -1,3 +1,93 @@
+# Wheel Leg Balance Control Research and Design Plan
+
+## 1 Fundamental Balance Control
+
+Fixed leg length, straight line movement on the ground, verification of basic principles of balance control
+
+- [x] Kinetic Analysis
+- [x] Control Algorithm
+- [x] Simplified Model Simulation Verification
+- [x] Kinematic Analysis of Leg Linkage
+- [x] Balancing + Simulation Verification of Leg Control
+- [ ] ~~Nonlinear Control*~~
+
+## 2 Overall Motion Control
+
+Implement basic movement functions, and optimize movement behavior
+
+~~Route 1~~
+
+- [ ] Leg Coordination
+- [ ] Leg Length Control
+- [ ] Steering Control
+- [ ] Roll Angle
+
+Route 2（Complete Model）
+
+- [x] Whole Body Dynamics Modeling
+- [x] Control Algorithm
+- [x] Simulation Verification
+
+## 3 Actual Robot Control
+
+- [x] Wireless Debugger +  Serial Port Testing
+- [x] Gyroscope Calibration
+- [x] Circuit Connection Design
+- [x] Joint Motor Drive
+- [x] Implementation of Motor Force Control + Verification
+- [x] Verification of Leg Kinematics
+- [x] Implementation of Control Algorithms
+- [x] Test
+
+
+## 4 Advance Capabilities
+
+Enhance robustness and achieve advanced functions such as jumping and disturbance adaptation.
+
+- [x] Stationary in place (try increasing the speed loop coefficient + reducing the speed loop input limit + decreasing the angle coefficient, if the effect is not good, try force position hybrid control)
+- [x] Test the effect of different leg lengths on getting up, and shortening the leg length in a large-angle state
+- [x] Disturbance observer
+- [x] Slipping detection (observer + force level hybrid control)
+- [x] Lift-off detection + landing (ground support force can be estimated through leg length PID output, and roll PID coefficient is expressed as a function of leg length PID)
+- [x] Gyroscopic translation (eccentric rotation, periodic velocity planning)
+- [x] Active jumping (jumping in motion/in-place)
+- [ ] Automatic jumping motion planning
+- [x] Power limitation
+- [x] Test
+
+## 5 Whole Vehicle
+
+Prepare the competition vehicle to the starting state
+
+Hardware
+
+- [x] Wiring Management
+- [x] Slip Ring Welding Wire
+- [x] Gimbal
+- [x] Wheel Motor ID + Wire Change
+- [x] Mini PC
+- [x] Camera
+- [x] Referee System
+- [x] Capacitance
+- [x] Relay
+- [x] Protect
+- [x] Maintenance + Spare Parts
+
+
+Software
+
+- [x] Board Program
+- [x] Pan Tilt Program
+- [x] Remote Control Operation
+- [x] Mouse and Keyboard Operation
+- [x] Aim Bot
+- [x] Power Limit
+- [ ] UI
+
+
+---
+
+
 # 轮腿平衡控制研发计划
 
 ## 1 基础平衡控制
