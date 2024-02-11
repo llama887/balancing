@@ -20,6 +20,8 @@ Reproduction must indicate the source of the work, and the creator reserves the 
 
 ### Handwritten Manuscript
 The following content has yet to be organized into an electronic format, thus the open source is in handwritten form. Such content includes power limitation, adaptive adjustment, anti-slip strategy, gyroscope translation, etc. In addition, during the organization process, there may have been some information regarding the modeling analysis and control that was overlooked. These handwriting manuscripts can also be used as a reference.
+
+All manuscripts have been translated and placed in this [document](https://docs.google.com/document/d/1GZG_sZS-NjTip8aB8_fAdbVojVIyzdiJpsQk-gfD-3A/edit?usp=sharing).
 1. Modeling Analysis - [modelling](note/modelling/modeling_1.jpg)
 2. Leg Mechanism Analysis - [leg](note/leg/leg_1.jpg)
 3. Power Limitation - [power](note/power/power_1.jpg)
